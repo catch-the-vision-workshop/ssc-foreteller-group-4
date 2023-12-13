@@ -32,7 +32,7 @@ app.get("/getForecast", async (req, res) => {
 	// Documentation: https://www.weatherapi.com/docs/
 	// Explorer: https://www.weatherapi.com/api-explorer.aspx#forecast
 	const weatherAPIUrl = `http://api.weatherapi.com/v1/forecast.json?key=d7e1b78d9b70431c8a5141651230212&q=${cityName}&days=1&aqi=no&alerts=no`;
-	
+
 
 	try {
 		const result = await fetch(weatherAPIUrl);
@@ -40,25 +40,45 @@ app.get("/getForecast", async (req, res) => {
 
 		// TODO: Determine text color based on temperature
 		let textColor = "black";
+		if (data.current.temp_c < 0) {
+			textColor = "cyan"
+		} else if (data.current.temp_c < 15) {
+			textColor = "blue"
+		} else if (data.current.temp_c < 30) {
+			textColor = "orange"
+		} else {
+			textColor = "red"
+		}
+	
 
 		// TODO: Calculate moisture level, divide by 10
 		let moistLevel = 0;
 
 		// TODO: Calculate sum, maximum, and minimum temperature
-        const forecastDay = data.forecast.forecastday[0];
+		const forecastDay = data.forecast.forecastday[0];
 		const hours = forecastDay.hour;
 		let sumTemp = 0;
 		let maxTemp = -Infinity;
 		let minTemp = Infinity;
 
 		// TODO: Calculate average temperature
-        const averageTemp = 0;
+		const averageTemp = 0;
 
 
 		// TODO: Find the maximum UV index and the time it occurs
 		let maxUVIndex = 0;
 		let maxUVTime = "";
-		
+
+		for (let index = 0; index < hours.length; index++) {
+			const element = hours[index];
+			if (element.uv > maxUVIndex) {
+				maxUVIndex = element.uv
+				maxUVTime = element.time
+			}
+		}
+
+
+
 		// Structure and send the response data
 		res.json({
 			city: data.location.name,
