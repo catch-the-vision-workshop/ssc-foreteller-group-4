@@ -53,16 +53,42 @@ app.get("/getForecast", async (req, res) => {
 
 		// TODO: Calculate moisture level, divide by 10
 		let moistLevel = 0;
+		moistLevel = data.current.humidity / 10
+		console.log(moistLevel)
 
 		// TODO: Calculate sum, maximum, and minimum temperature
 		const forecastDay = data.forecast.forecastday[0];
 		const hours = forecastDay.hour;
 		let sumTemp = 0;
-		let maxTemp = -Infinity;
-		let minTemp = Infinity;
+		for (let index = 0; index < hours.length; index++) {
+			const element = hours[index];
+			sumTemp = sumTemp + element.temp_c
+		}
+		console.log(sumTemp)
+		let maxTemp = 0;
+		for (let index = 0; index < hours.length; index++) {
+			const element = hours[index];
+
+			if (element.temp_c > maxTemp) {
+				maxTemp = element.temp_c
+			}
+		}
+
+		console.log(maxTemp)
+		let minTemp = 0;
+		for (let index = 0; index < hours.length; index++) {
+			const element = hours[index];
+
+			if (element.temp_c < minTemp) {
+				minTemp = element.temp_c
+			}
+		}
+		console.log(minTemp)
 
 		// TODO: Calculate average temperature
-		const averageTemp = 0;
+		let averageTemp = 0;
+		averageTemp = sumTemp/hours.length
+		console.log(averageTemp)
 
 
 		// TODO: Find the maximum UV index and the time it occurs
