@@ -3,37 +3,21 @@ const cityForm = document.getElementById("cityForm");
 
 // TODO: Replace this function with the one in the README.md file after backend is done.
 async function getForecast(cityName) {
-	return [
-		{
-			city: "Thailand",
-			temperature: 30,
-			condition: "Sunny",
-			chanceOfRain: 0,
-			textColor: "red",
-			moistLevel: 1,
-			moonPhase: "Waxing Gibbous",
-			averageTemp: 15,
-			maxTemp: 30,
-			minTemp: 10,
-			maxUVIndex: 10,
-			maxUVTime: new Date().toISOString(),
-
-		},
-		{
-			city: "London",
-			temperature: 3,
-			condition: "Sunny",
-			chanceOfRain: 1000,
-			textColor: "blue",
-			moistLevel: 10,
-			moonPhase: "Waxing Crescent",
-			averageTemp: 15,
-			maxTemp: 30,
-			minTemp: 10,
-			maxUVIndex: 10,
-			maxUVTime: new Date().toISOString(),
-		},
-	][Math.floor(Math.random() * 2)];
+	try {
+    // Perform a fetch request to the specified URL, passing the city name as a query parameter
+    const response = await fetch(
+      `http://localhost:3000/getForecast?cityName=${cityName}`
+    );
+    // Parse the JSON response from the server
+    const data = await response.json();
+    // Return the parsed data
+    return data;
+  } catch (error) {
+    // Log any errors encountered during the fetch operation
+    console.error("Error fetching forecast:", error);
+    // Return null to indicate an unsuccessful operation
+    return null;
+  }
 }
 
 // Add an "onsubmit" event listener to the cityForm
@@ -57,7 +41,9 @@ cityForm.onsubmit = async function (event) {
 
 	// TODO: Loop through the number of times indicated by "result.moistLevel" and append water drop emojis
 	let moistLevelEmojis = "";
-	
+	for (let i = 0; i < forecastData.moistLevel; i++) {
+    moistLevelEmojis = moistLevelEmojis + "💧";
+  }
 	// TODO: Determine moon phase emojis based on "result.moonPhase"
 	// take these emoji and names for your conditional statement for moon phases
 	// "New Moon": "🌑",
