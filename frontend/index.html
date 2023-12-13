@@ -1,41 +1,51 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script defer src="code.js"></script>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script defer src="code.js"></script>
+	<style>
+		body {
+			background-image: url(/assets/background.jpg);
+		}
 
-		<title>SyntaX Weather Predictor</title>
-	</head>
+		h1 {
+			color: blue;
+		}
 
-	<body>
-		<div class="container mx-auto flex flex-col items-center justify-center">
-			<div class="mb-4">
-				<h1 class="text-4xl font-bold">SyntaX Weather Predictor</h1>
-				<p>Enter your city below to get a forecast for the weather.</p>
-			</div>
+		p {
+			color: red;
+			font-size: 25px;
+		}
 
-			<div class="relative flex flex-col items-center justify-center">
-				<form id="cityForm" class="mb-2 flex w-full flex-row items-center justify-center gap-x-2">
-					<input
-						type="text"
-						name="city"
-						id="city"
-						placeholder="Eg. London, Tokyo"
-						class="rounded-md border-2 border-gray-300 p-2"
-					/>
-					<input type="submit" value="Submit" class="rounded-md border-2 border-gray-300 p-2" />
-				</form>
+		div {
+			padding: 20px;
+			border: black 50px;
+		}
 
-				<div
-					id="result"
-					class="flex w-full flex-col items-center justify-center rounded-md border-2 border-solid p-2"
-				>
-					Result Goes Here!
-				</div>
-			</div>
+	</style>
+	<title>SyntaX Weather Predictor</title>
+</head>
+
+<body>
+	<div class="container mx-auto flex flex-col items-center justify-center">
+		<div class="mb-4">
+			<h1 class="text-4xl font-bold">SyntaX Weather Predictor</h1>
+			<p>Enter your city below to get a forecast for the weather.</p>
 		</div>
-	</body>
+		<div class="relative flex flex-col items-center justify-center">
+			<form id="cityForm" class="mb-2 flex w-full flex-row items-center justify-center gap-x-2">
+				<input type="text" name="city" id="city" placeholder="Eg. London, Tokyo"
+					class="rounded-md border-2 border-gray-300 p-2" />
+				<input type="submit" value="Submit" class="rounded-md border-2 border-gray-300 p-2" />
+			</form>
+			<div id="result"
+				class="flex w-full flex-col items-center justify-center rounded-md border-2 border-solid p-2"> Result
+				Goes Here! </div>
+		</div>
+	</div>
+</body>
+
 </html>

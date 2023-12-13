@@ -57,7 +57,7 @@ cityForm.onsubmit = async function (event) {
 
 	// TODO: Loop through the number of times indicated by "result.moistLevel" and append water drop emojis
 	let moistLevelEmojis = "";
-
+	
 	// TODO: Determine moon phase emojis based on "result.moonPhase"
 	// take these emoji and names for your conditional statement for moon phases
 	// "New Moon": "🌑",
@@ -69,6 +69,31 @@ cityForm.onsubmit = async function (event) {
 	// "Last Quarter": "🌗",
 	// "Waning Crescent": "🌘",
 	let moonPhaseEmojis = "";
+	if(forecastData.moonPhase == "New Moon")
+	{
+		moonPhaseEmojis= "🌑";
+	}else if(forecastData.moonPhase == "Waxing Crescent")
+	{
+		moonPhaseEmojis = "🌒";
+	}else if(forecastData.moonPhase == "First Quater")
+	{
+		moonPhaseEmojis = "🌓";
+	}else if(forecastData.moonPhase == "Waxing Gibbous")
+	{
+		moonPhaseEmojis = "🌔"
+	}else if(forecastData.moonPhase == "Full Moon")
+	{
+		moonPhaseEmojis = "🌕"
+	}else if(forecastData.moonPhase == "Waning Gibbous")
+	{
+		moonPhaseEmojis = "🌖"
+	}else if(forecastData.moonPhase == "Last Quarter")
+	{
+		moonPhaseEmojis = "🌗"
+	}else
+	{
+		moonPhaseEmojis = "🌘"
+	}
 
 	// Construct HTML content to display the forecast data
 	const resultHTML = `
